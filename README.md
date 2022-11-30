@@ -5,20 +5,19 @@
 ## Project Structure:
 
 
-├── README.md
-├── app
-│   ├── run.py # Flask file that runs app
-│   └── templates
-│       ├── go.html # Classification result page of web app
-│       └── master.html # Main page of web app
-├── data
-│   ├── Project2-Udacity.db # Database to save clean data
-│   ├── disaster_categories.csv # Input data to process
-│   ├── disaster_messages.csv # Input data to process
-│   └── process_data.py # ETL pipeline
-├── models
-│   └── train_classifier.py # ML pipeline
-│    └── classifier.pkl # Saved model. Please run the ML pipeline to create this file.
+README.md
+- app
+ 	+ run.py # Flask file that runs app
+ 	+ templates
+ 	+ go.html # Classification result page of web app
+ 	+ master.html # Main page of web app
+- data
+ 	+ Project2-Udacity.db # Database to save clean data
+ 	+ disaster_categories.csv # Input data to process
+ 	+ disaster_messages.csv # Input data to process
+ 	+ process_data.py # ETL pipeline
+- models
+ 	+ train_classifier.py # ML pipeline
 
 ## Instruction:
 
