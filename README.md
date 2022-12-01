@@ -1,6 +1,7 @@
 # Disaster Response Pipeline Project
 
 - This course taught me and helped me improve my data engineering skills, which will expand my opportunities and potential as a data scientist. I'll use these skills in this project to analyze disaster data from Appen and build a model for an API that classifies disaster notifications.
+- An individual may enter a fresh message into a web application and receive classification results for the message in many categories. Data visualizations are also shown via the online application.
 
 ## Project Structure:
 
