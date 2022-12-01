@@ -1,16 +1,49 @@
 import sys
+import pandas as pd
+from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
-    pass
+    """
+    Load and join input raw data   
+    """
+
+    messages = pd.read_csv(messages_filepath)
+    categories = pd.read_csv(categories_filepath)
+    df = messages.merge(categories, how ='outer', on =['id'])
+    return df
 
 
 def clean_data(df):
-    pass
+    """
+    Clean the dataframe.
+    """
+    categories = df['categories'].str.split(";", expand=True)
+    row = categories.iloc[0]
+    category_colnames = [x.split("-")[0] for x in row]
+    categories.columns = category_colnames
+    
+    for column in categories:
+        # Set each value to be the last character of the string
+        categories[column] = categories[column].str.split("-").str[-1]
+        # Convert column from string to numeric
+        categories[column] = categories[column].apply(pd.to_numeric)
+    
+    df = df.drop("categories", axis=1)    
+    # Concatenate the original dataframe with the new `categories` dataframe
+    df = pd.concat([df, categories], sort=False, axis=1)
+    # Drop duplicates
+    df = df.drop_duplicates()
+    
+    return df
 
 
 def save_data(df, database_filename):
-    pass  
+    """
+    Save the cleane df into database.
+    """
+    engine = create_engine(f'sqlite:///{database_filename}')
+    df.to_sql('Project2-Udacity', engine, index=False, if_exists='replace')  
 
 
 def main():
